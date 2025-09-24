@@ -1,29 +1,30 @@
 using System;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseManager : ChangePanel
 {
     private bool isPaused = false;
     
 
-    private void FixedUpdate()
+    private void Update()
     {
-        TogglePause();
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            TogglePause();
+        }
     }
 
     public void TogglePause()
     {
-        if ((Input.GetKeyDown(KeyCode.Escape)))
-        {
             isPaused = !isPaused;
             
             if (isPaused)
                 GameTimeScale.Pause();
             else
                 GameTimeScale.Resume();
-            
+            GameEvents.PauseChanged(isPaused);
         }
-        GameEvent.PauseChanged(isPaused);
-    }
+        
 }
