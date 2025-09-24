@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 
-public class Menu : MonoBehaviour
+public class Menu : ChangePanel
 {
     public GameObject[] PanelList;
     
@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour
 
     public void ShowLevelMenu()
     {
-        ChangePanel.HideAllExeptFor(PanelList,new GameObject[]{PanelList[1]});
+        HideAllExeptFor(PanelList,new GameObject[]{PanelList[1]});
     }
     
 

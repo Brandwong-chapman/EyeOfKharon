@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.shellter.input-management": {
+      "version": "https://github.com/ElliottHood/Input-Management.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.inputsystem": "1.7.0"
+      },
+      "hash": "5ec7a4ea454e9e26b6db20277b1a232ad94b4684"
+    },
     "com.unity.2d.animation": {
       "version": "12.0.2",
       "depth": 0,

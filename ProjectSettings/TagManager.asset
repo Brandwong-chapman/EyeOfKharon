@@ -2,18 +2,19 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Climbable
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Entity
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Hurtbox
+  - Hitbox
+  - Platform
   - 
   - 
   - 
@@ -38,6 +39,23 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1331533167
+    locked: 0
+  - name: Tile Background
+    uniqueID: 1575004559
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 1610372919
+    locked: 0
+  - name: Tile Foreground
+    uniqueID: 2948411883
+    locked: 0
+  - name: Foreground
+    uniqueID: 4252387779
+    locked: 0
+  m_RenderingLayers:
+  - Default
