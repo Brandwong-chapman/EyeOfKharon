@@ -5,10 +5,6 @@ public class ChangeScene : MonoBehaviour
     public static int levelAmount;
     private static int currentLevel =-1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject); // survives scene changes
-    }
     
     public void Quit()
     {

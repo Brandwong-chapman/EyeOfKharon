@@ -8,7 +8,6 @@ namespace ControllerSystem.Platformer2D
         private bool isPaused = false;
         public override void HandleMovement()
         {
-            print("a");
             HandlePause();
         }
 
@@ -16,7 +15,6 @@ namespace ControllerSystem.Platformer2D
         {
             if (Controller.Input.pause.GetPressedThisFrame())
             {
-                print("s");
                 isPaused = !isPaused;
                 if (isPaused)
                     GameTimeScale.Pause();
