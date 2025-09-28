@@ -11,7 +11,21 @@ public class PlatformerWallModule : PlatformerMotorModule
     [Tooltip("The relative height multiplier for wall detection. (aligned to the bottom of the collider)")]
     [SerializeField] private float _wallDetectionHeightMultiplier = 1/16f;
     private PlatformerJumpModule _jumpModule;
-
+    
+    [SerializeField] private float _wallJumpLockoutTime = 1f; // seconds
+    private float _lastWallJumpTime;
+    private int _lastWallJumpDir;
+    private int _lockoutDir; 
+    private float _lockoutEndTime;
+    /// <summary>
+    /// Returns -1, 0, or 1 indicating if movement in that direction is currently locked out.
+    /// </summary>
+    public int GetLockedOutDirection()
+    {
+        
+        return Time.time < _lockoutEndTime ? _lockoutDir : 0;
+    }
+    
     public override void Initialize(PlatformerMotor newMotor)
     {
         base.Initialize(newMotor);
@@ -358,12 +372,16 @@ public class PlatformerWallModule : PlatformerMotorModule
             _lastWallTouched == WallSide.Right ? -1 : 0;
     
         motor.Rb.linearVelocity = new Vector2(direction * _wallJumpForceX, _wallJumpForceY);
-
+        
+        _lockoutDir = _lastWallTouched == WallSide.Left ? -1 :
+            _lastWallTouched == WallSide.Right ?  1 : 0;
+        _lockoutEndTime = Time.time + _wallJumpLockoutTime;
         // Clear cling/slide/climb state
         _state = WallState.None;
 
         // Reset jump early state
         _jumpModule.ResetJumpEndedEarly();
+        
 
         motor.Grounded = false;
 
