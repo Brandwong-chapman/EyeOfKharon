@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wallDetectionHeightMultiplier: 0.0625
+  _wallJumpLockoutTime: 1
   _wallSlideSpeed: 5
   _wallClimbSpeed: 6
   _wallSlideAcceleration: 5

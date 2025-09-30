@@ -179,7 +179,7 @@ namespace ControllerSystem.Platformer2D
             public float FallGravity = 5f;
             public float FallCap = 7f;
             [Header("Fastfall Settings")] 
-            public bool FastFallEnabled = true;
+            public bool FastFallEnabled = false;
             public float FastFallGravityCap = 10f;
             public float FastFallGravityMultiplier = 1.5f;
         }
@@ -202,7 +202,11 @@ namespace ControllerSystem.Platformer2D
             float gravityMultiplier = FastFalling ? _gravitySettings.FastFallGravityMultiplier : 1;
             
             // Increase gravity when falling
-            if (motor.Rb.linearVelocity.y < 0 && !motor.Grounded)
+            if (motor.IgnoreFallGravity)
+            {
+                motor.SetGravity(_gravitySettings.FallGravity * 0);
+            }
+            else if (motor.Rb.linearVelocity.y < 0 && !motor.Grounded)
             {
                 motor.SetGravity(_gravitySettings.FallGravity * gravityMultiplier);
             }

@@ -47,6 +47,9 @@ namespace InputManagement
                 case ButtonType.pause:
                     buttonInput = inputManager.Input.pause;
                     break;
+                case ButtonType.dash:
+                    buttonInput = inputManager.Input.dash;
+                    break;
                 default:
                     Debug.Log("That input type is not yet supported.");
                     break;

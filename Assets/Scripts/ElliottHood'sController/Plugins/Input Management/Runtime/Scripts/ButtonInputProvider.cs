@@ -60,6 +60,7 @@ namespace InputManagement
 
         public bool GetPressedThisFrame(int priority = 0)
         {
+            
             if (priority < RequiredPriority)
                 return false;
 

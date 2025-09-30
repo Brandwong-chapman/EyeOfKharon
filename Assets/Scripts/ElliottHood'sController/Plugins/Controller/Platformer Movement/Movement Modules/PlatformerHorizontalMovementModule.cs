@@ -18,11 +18,15 @@ namespace ControllerSystem.Platformer2D
         
         private PlatformerCrouchModule _crouchModule;
         private PlatformerWallModule _wallModule;
+        private PlatformerDashModule _dashModule;
+
 
        
         private void Awake()
         {
             _crouchModule = GetComponent<PlatformerCrouchModule>();
+            _wallModule = GetComponent<PlatformerWallModule>();
+            _dashModule = GetComponent<PlatformerDashModule>();
         }
         
         public override void Initialize(PlatformerMotor newMotor)
@@ -31,22 +35,14 @@ namespace ControllerSystem.Platformer2D
 
             _crouchModule = GetComponent<PlatformerCrouchModule>();
             _wallModule = GetComponent<PlatformerWallModule>();
+            _dashModule = GetComponent<PlatformerDashModule>();
         }
 
         public override void HandleMovement()
         {
-            bool isMovingTowardsWall = false;
             float inputX = Controller.Input.move.GetValue().x;
-            if (_wallModule != null)
-            {
-                int lockedOutDir = _wallModule.GetLockedOutDirection();
-                if ((lockedOutDir != 0 && Mathf.Sign(inputX) == lockedOutDir))
-                {
-                    isMovingTowardsWall = true;
-                }
-            }
             
-            if (Controller.InputtingHorizontalMovement && (_crouchModule == null || !_crouchModule.Crouching) && !isMovingTowardsWall) // Stop movement if crouching
+            if (CanMove(inputX)) 
             {
                 float targetSpeed = motor.Grounded ? _groundSpeed : _airSpeed;
                 float acceleration = motor.Grounded ? _groundAccelerationTime : _airAccelerationTime;
@@ -65,13 +61,34 @@ namespace ControllerSystem.Platformer2D
                 motor.Rb.AddForce(new Vector2(horizontalForce * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
 
             } else {
-                float dragForce = motor.Rb.linearVelocity.x * -1;
-
-                dragForce *= motor.Grounded ? _groundDrag : _airDrag;
          
-                motor.Rb.AddForce(new Vector2(dragForce * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
+                motor.Rb.AddForce(new Vector2(FindDragForce() * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
             }
         }
+
+        public float FindDragForce()
+        {
+            float dragForce = motor.Rb.linearVelocity.x * -1;
+
+            dragForce *= motor.Grounded ? _groundDrag : _airDrag;
+            
+            return dragForce;
+        }
+
+        private bool CanMove(float inputX)
+        {
+          
+            bool isMovingTowardsWall = false;
+            int lockedOutDir = _wallModule.GetLockedOutDirection();
+            if ((lockedOutDir != 0 && Mathf.Sign(inputX) == lockedOutDir))
+            {
+                isMovingTowardsWall = true;
+            }
+
+            return (!_dashModule.IsDashing() && Controller.InputtingHorizontalMovement && (!_crouchModule.Crouching) &&
+                    !isMovingTowardsWall);
+        }
+        
         
     }
 }

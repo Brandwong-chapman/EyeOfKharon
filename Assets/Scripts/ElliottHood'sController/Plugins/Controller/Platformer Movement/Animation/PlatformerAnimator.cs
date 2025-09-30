@@ -10,6 +10,7 @@ namespace ControllerSystem.Platformer2D
         private static readonly int Idle = Animator.StringToHash("Idle");
         private static readonly int Run = Animator.StringToHash("Run");
         private static readonly int Jump = Animator.StringToHash("Jump");
+        private static readonly int Dash = Animator.StringToHash("Dash");
         private static readonly int Fall = Animator.StringToHash("Fall");
         private static readonly int Crouch = Animator.StringToHash("Crouch");
         private static readonly int WallClimb = Animator.StringToHash("WallClimb");

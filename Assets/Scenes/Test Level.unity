@@ -569,20 +569,28 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 512760295}
     m_ColliderPaths:
-    - - X: 80000000
+    - - X: 49500000
         Y: 0
-      - X: 40000000
+      - X: 39600000
         Y: 0
-      - X: 40000000
+      - X: 39600000
         Y: -3125000
-      - X: 80000000
+      - X: 49500000
+        Y: -3125000
+    - - X: 79200000
+        Y: 0
+      - X: 49500004
+        Y: 0
+      - X: 49500004
+        Y: -3125000
+      - X: 79200000
         Y: -3125000
   m_CompositePaths:
     m_Paths:
-    - - {x: 7.9999704, y: -0.3135}
-      - {x: 7.9999704, y: -0.001}
-      - {x: 4, y: -0.0010293}
-      - {x: 4.000029, y: -0.3135}
+    - - {x: 7.9199705, y: -0.3135}
+      - {x: 7.9199705, y: -0.001}
+      - {x: 3.96, y: -0.0010293}
+      - {x: 3.9600294, y: -0.3135}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -1605,7 +1613,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.99, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1964673893}
@@ -1924,6 +1932,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -944628639613478452, guid: be682e8bb34882e429d0075561b0633f, type: 3}
     - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard&Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionId
+      value: f0b32217-6dd0-42d4-b3f1-f504cb920d40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionName
+      value: 'Player/Dash[/Keyboard/leftShift]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1415847807}
@@ -1960,8 +1992,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1415847807}
     - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1415847807}
+    - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Move
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1996,6 +2036,10 @@ PrefabInstance:
       value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: InputManagement.InputManager, com.shellter.input-management
       objectReference: {fileID: 0}
@@ -2022,6 +2066,14 @@ PrefabInstance:
     - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: InputManagement.InputManager, com.shellter.input-management
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputManagement.InputManager, com.shellter.input-management
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611028311989634018, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8666770499545211678, guid: 8f4977cb816401c4e889800b247fc6e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2410,7 +2462,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 349021501421053561, guid: dbfefa11fbc964a41ad02cd29c64b27f, type: 3}
       propertyPath: _gravitySettings.FallCap
-      value: 16
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 349021501421053561, guid: dbfefa11fbc964a41ad02cd29c64b27f, type: 3}
       propertyPath: _gravitySettings.Gravity
@@ -2443,6 +2495,10 @@ PrefabInstance:
     - target: {fileID: 4928893203763912494, guid: dbfefa11fbc964a41ad02cd29c64b27f, type: 3}
       propertyPath: _wallJumpForceY
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928893203763912494, guid: dbfefa11fbc964a41ad02cd29c64b27f, type: 3}
+      propertyPath: _wallJumpLockoutTime
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6650671476741911390, guid: dbfefa11fbc964a41ad02cd29c64b27f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2494,7 +2550,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6650671476741911390, guid: dbfefa11fbc964a41ad02cd29c64b27f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 256569313}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7061994765553338623, guid: dbfefa11fbc964a41ad02cd29c64b27f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2087359921}
   m_SourcePrefab: {fileID: 100100000, guid: dbfefa11fbc964a41ad02cd29c64b27f, type: 3}
 --- !u!1001 &1952844326
 PrefabInstance:
@@ -5630,6 +5689,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039594167}
   m_CullTransparentMesh: 1
+--- !u!1 &2087359913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7061994765553338623, guid: dbfefa11fbc964a41ad02cd29c64b27f, type: 3}
+  m_PrefabInstance: {fileID: 1861501167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2087359921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087359913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43849a68ed2e9e74d8e1977cc4b1e429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControllerSystem.Platformer2D.PlatformerDashModule
+  _dashSpeed: 15
+  _waveDashSpeed: 15
+  _dashDuration: 0.2
+  _dashCooldown: 0.5
+  _dashAmount: 1
+  _reducedGravityDuration: 0.05
 --- !u!1 &2129653529
 GameObject:
   m_ObjectHideFlags: 0

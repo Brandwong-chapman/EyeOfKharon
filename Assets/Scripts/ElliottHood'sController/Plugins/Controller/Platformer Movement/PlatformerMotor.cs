@@ -17,6 +17,7 @@ namespace ControllerSystem.Platformer2D
         public float CounteractGravityVelocity => -Physics2D.gravity.y * Rb.gravityScale * Time.fixedDeltaTime;
         private Vector3 GroundContactPoint => new Vector2(transform.position.x, Collider.bounds.min.y);
         private PlatformerMotorModule[] _modules;
+        public bool IgnoreFallGravity { get; set; }
 
         protected override void Awake()
         {
