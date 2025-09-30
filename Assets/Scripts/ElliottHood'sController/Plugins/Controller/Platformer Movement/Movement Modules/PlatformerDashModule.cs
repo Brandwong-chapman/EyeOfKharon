@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 //Brandon's Code
 namespace ControllerSystem.Platformer2D
@@ -45,23 +46,7 @@ namespace ControllerSystem.Platformer2D
 
         public override void HandleMovement()
         {
-           
-            if (_isDashing)
-            {
-                if (Time.time >= _dashEndTime)
-                {
-                    EndDash();
-                }
-                else
-                {
-                    motor.Rb.linearVelocity = _dashDirection * _dashSpeed;
-
-                }
-            }
-            else
-            {
-                
-                if (Controller.Input.dash.GetHeld())
+                if (!_isDashing && Controller.Input.dash.GetHeld())
                 {
                     TryStartDash();
                 }
@@ -72,15 +57,14 @@ namespace ControllerSystem.Platformer2D
                 {
                     EndReducedGravity();
                 }
-            }
         }
 
         private void TryStartDash()
         {
-
-            if (_dashAmount != 0)
+            if (_dashAmount != 0 && !_isDashing)
             {
                 --_dashAmount;
+                _lastDashTime = Time.time; // Mark when dash started
                 motor.Rb.linearDamping = (float)0; // no drag during dash
                 Vector2 input = Controller.Input.move.GetValue();
                 if (input.sqrMagnitude < 0.1f)
@@ -91,22 +75,28 @@ namespace ControllerSystem.Platformer2D
                 }
 
                 _dashDirection = input.normalized;
-                _fighterController.UpdateState(FighterController.States.Dash);
-                _isDashing = true;
-                _lastDashTime = Time.time;
-                _dashEndTime = Time.time + _dashDuration;
-                motor.Rb.gravityScale = 0;
-
-                // Apply initial velocity instantly
-                motor.Rb.linearVelocity = _dashDirection * _dashSpeed;
+                
+                StartCoroutine(DashRoutine());
             }
-
-            
         }
+        
+        private IEnumerator DashRoutine()
+        {
+            _isDashing = true;
+            _fighterController.UpdateState(FighterController.States.Dash);
+
+            motor.Rb.gravityScale = 0;
+            motor.Rb.linearVelocity = _dashDirection * _dashSpeed;
+
+            yield return new WaitForSeconds(_dashDuration);
+
+            EndDash();
+        }
+        
         private void EndDash()
         {
-            _fighterController.UpdateState(FighterController.States.Movement);
             _isDashing = false;
+            _fighterController.UpdateState(FighterController.States.Movement);
             _isReducedGravity = true;
             _reducedGravityEndTime = Time.time + _reducedGravityDuration;
             
@@ -124,7 +114,8 @@ namespace ControllerSystem.Platformer2D
         
         private void TryRestoreDash()
         {
-            if (!(_dashAmount > 0  && Time.time - _lastDashTime < _dashCooldown) && motor.Grounded)
+            // Only restore dash when grounded AND cooldown is over AND not currently dashing
+            if (!_isDashing && motor.Grounded && Time.time >= _lastDashTime + _dashCooldown)
             {
                 _dashAmount = 1;
             }

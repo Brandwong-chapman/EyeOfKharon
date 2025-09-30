@@ -81,8 +81,7 @@ namespace ControllerSystem.Platformer2D
         }
 
         private bool CanMove(float inputX)
-        {
-          
+        {   
             bool isMovingTowardsWall = false;
             int lockedOutDir = _wallModule.GetLockedOutDirection();
             if ((lockedOutDir != 0 && Mathf.Sign(inputX) == lockedOutDir))
@@ -90,7 +89,7 @@ namespace ControllerSystem.Platformer2D
                 isMovingTowardsWall = true;
             }
 
-            return (!_canMove && Controller.InputtingHorizontalMovement && (!_crouchModule.Crouching) &&
+            return (_canMove && Controller.InputtingHorizontalMovement && !_crouchModule.Crouching &&
                     !isMovingTowardsWall);
         }
         
