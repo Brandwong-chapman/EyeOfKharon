@@ -53,6 +53,10 @@ public class FighterController : EntityController
     {
         Movement,
         Ability,
+        Dash,
+        Attack,
+        OnWall,
+        
         Dead,
     }
 

@@ -16,17 +16,21 @@ namespace ControllerSystem.Platformer2D
         [Tooltip("Applies only when not inputting movement")]
         [SerializeField] private float _airDrag = 5;
         
+        private bool _canMove = true;
+
+        
         private PlatformerCrouchModule _crouchModule;
         private PlatformerWallModule _wallModule;
-        private PlatformerDashModule _dashModule;
-
-
+        private FighterController  _fighterController;
        
         private void Awake()
         {
             _crouchModule = GetComponent<PlatformerCrouchModule>();
             _wallModule = GetComponent<PlatformerWallModule>();
-            _dashModule = GetComponent<PlatformerDashModule>();
+            _fighterController = GetComponent<FighterController>();
+            if (_fighterController != null)
+                _fighterController.OnStateChanged += OnPlayerStateChanged;
+        
         }
         
         public override void Initialize(PlatformerMotor newMotor)
@@ -35,7 +39,8 @@ namespace ControllerSystem.Platformer2D
 
             _crouchModule = GetComponent<PlatformerCrouchModule>();
             _wallModule = GetComponent<PlatformerWallModule>();
-            _dashModule = GetComponent<PlatformerDashModule>();
+            _fighterController = GetComponent<FighterController>();
+
         }
 
         public override void HandleMovement()
@@ -85,10 +90,19 @@ namespace ControllerSystem.Platformer2D
                 isMovingTowardsWall = true;
             }
 
-            return (!_dashModule.IsDashing() && Controller.InputtingHorizontalMovement && (!_crouchModule.Crouching) &&
+            return (!_canMove && Controller.InputtingHorizontalMovement && (!_crouchModule.Crouching) &&
                     !isMovingTowardsWall);
         }
         
-        
+        private void OnDestroy()
+        {
+            if (_fighterController != null)
+                _fighterController.OnStateChanged -= OnPlayerStateChanged;
+        }
+        private void OnPlayerStateChanged(FighterController.StateUpdateInfo stateInfo)
+        {
+            // Disable movement if player is in Dash state
+            _canMove = stateInfo.NewState == FighterController.States.Movement;
+        }
     }
 }
