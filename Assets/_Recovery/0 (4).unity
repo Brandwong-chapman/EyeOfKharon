@@ -5785,7 +5785,6 @@ MonoBehaviour:
   _dashDuration: 0.2
   _dashCooldown: 0.8
   _dashAmount: 1
-  _reducedGravityDuration: 0.05
 --- !u!1 &2129653529
 GameObject:
   m_ObjectHideFlags: 0

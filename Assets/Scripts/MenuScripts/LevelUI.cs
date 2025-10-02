@@ -23,14 +23,12 @@ public class LevelUI : ChangePanel
         if (isPaused)
         {
             Show(PausePanel);
-            Debug.Log("Game paused — muting audio");
-            AudioListener.pause = true;
+            AudioListener.pause = true; // mutes audio when AudioListener connected  
         }
         else
         {
             Hide(PausePanel);
-            Debug.Log("Game resumed — unmuting audio");
-            AudioListener.pause = false;
+            AudioListener.pause = false; // unmutes audio when AudioListener connected  
         }
     }
 

@@ -10,31 +10,31 @@ namespace ControllerSystem.Platformer2D
         /// Handles dash movement when the Dash action is triggered.
         /// </summary>
         [SerializeField] private float _dashSpeed = 15f;
+
         [SerializeField] private float _waveDashSpeed = 15f;
         [SerializeField] private float _dashDuration = 0.2f;
         [SerializeField] private float _dashCooldown = 0.5f;
         [SerializeField] private int _dashAmount = 1;
-        [SerializeField] private float _reducedGravityDuration = 0.5f; // half a second
+        [SerializeField] private float _floatAfterDashTime = 0.2f;
 
         //[Tooltip("Applies only when not inputting movement")]
         private bool _isDashing;
-        private bool _isReducedGravity;
         private float _lastDashTime;
-        private float _dashEndTime; 
-        private float _reducedGravityEndTime;
+        private float _dashEndTime;
+        private float _defaltGravity;
         private Vector2 _dashDirection;
-        
-        private PlatformerHorizontalMovementModule _movementModule;
-        private FighterController  _fighterController;
 
-       
+        private PlatformerHorizontalMovementModule _movementModule;
+        private FighterController _fighterController;
+
+
         private void Awake()
         {
             _movementModule = GetComponent<PlatformerHorizontalMovementModule>();
             _fighterController = GetComponent<FighterController>();
-
+            _defaltGravity = motor.Rb.linearDamping;
         }
-        
+
         public override void Initialize(PlatformerMotor newMotor)
         {
             base.Initialize(newMotor);
@@ -46,79 +46,108 @@ namespace ControllerSystem.Platformer2D
 
         public override void HandleMovement()
         {
-                if (!_isDashing && Controller.Input.dash.GetHeld())
-                {
-                    TryStartDash();
-                }
-
-                TryRestoreDash();
+            HandleDash();
             
-                if (_isReducedGravity && Time.time >= _reducedGravityEndTime)
+            TryStartDash();
+
+            TryRestoreDash();
+        }
+
+        private void HandleDash()
+        {
+            if (_isDashing)
+            {
+                // parts of the TilesMap (the ground) can collide with the player thus slowing down the dash. This makes sure it is always going at the correct speed when Grounded
+                if (motor.Grounded && Mathf.Abs(_dashDirection.y) < 0.1f)
                 {
-                    EndReducedGravity();
+                    motor.Rb.linearVelocity = new Vector2(_dashDirection.x * _dashSpeed, 0f);
                 }
+                else
+                {
+                    motor.Rb.linearVelocity = _dashDirection * _dashSpeed;
+                }
+            }
         }
 
         private void TryStartDash()
         {
-            if (_dashAmount != 0 && !_isDashing)
+            if (_dashAmount != 0 && !_isDashing && Controller.Input.dash.GetHeld())
             {
                 --_dashAmount;
                 _lastDashTime = Time.time; // Mark when dash started
-                motor.Rb.linearDamping = (float)0; // no drag during dash
                 Vector2 input = Controller.Input.move.GetValue();
+                
+                // Dashes to were the player is facing when no direction is given
                 if (input.sqrMagnitude < 0.1f)
                 {
-                    // fallback to facing direction if no input
                     float facingDir = Controller.FacingLeft ? -1f : 1f;
                     input = new Vector2(facingDir, 0);
-                }
 
-                _dashDirection = input.normalized;
+                }
                 
+                _dashDirection = input.normalized; // makes input sick to the 8 directions 
+                motor.Rb.linearVelocity = _dashDirection * _dashSpeed;
+
                 StartCoroutine(DashRoutine());
             }
         }
-        
+
         private IEnumerator DashRoutine()
         {
             _isDashing = true;
             _fighterController.UpdateState(FighterController.States.Dash);
-
-            motor.Rb.gravityScale = 0;
-            motor.Rb.linearVelocity = _dashDirection * _dashSpeed;
+            
+            motor.Rb.linearDamping = 0f; // no drag during dash
+            motor.Rb.gravityScale = 0f; // no gravity during dash
+            motor.IgnoreFallGravity = true; // tells other classes that there is no gravity
 
             yield return new WaitForSeconds(_dashDuration);
 
             EndDash();
+
         }
-        
+
         private void EndDash()
         {
             _isDashing = false;
             _fighterController.UpdateState(FighterController.States.Movement);
-            _isReducedGravity = true;
-            _reducedGravityEndTime = Time.time + _reducedGravityDuration;
-            
-            motor.IgnoreFallGravity = true;
-            
+
+            motor.Rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            if (motor.Grounded && Mathf.Abs(_dashDirection.y) < 0.1f)
+            {
+                motor.Rb.linearVelocity = new Vector2(_dashDirection.x * _dashSpeed, 0f);
+            }
+            else
+            {
+                motor.Rb.linearVelocity = Vector2.zero;
+            }
+
             motor.Rb.linearDamping = _movementModule.FindDragForce();
-            motor.Rb.linearVelocity = Vector2.zero;
-        }
-        private void EndReducedGravity()
-        {
-            _isReducedGravity = false;
-            motor.IgnoreFallGravity = false;
-            motor.Rb.linearDamping = (float)1.7;
+            StartCoroutine(dashFloat(_floatAfterDashTime));
         }
         
+        private IEnumerator dashFloat(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            motor.IgnoreFallGravity = false;
+            motor.Rb.linearDamping = _defaltGravity;
+        }
+
         private void TryRestoreDash()
         {
-            // Only restore dash when grounded AND cooldown is over AND not currently dashing
             if (!_isDashing && motor.Grounded && Time.time >= _lastDashTime + _dashCooldown)
             {
                 _dashAmount = 1;
             }
+        }
+
+        public void EndDashEarly()
+        {
+            if (!_isDashing) return; 
+
+            StopAllCoroutines(); // Stop DashRoutine if running
+            EndDash(); 
         }
     }
 }
