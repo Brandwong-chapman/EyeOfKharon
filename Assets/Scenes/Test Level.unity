@@ -5817,7 +5817,9 @@ MonoBehaviour:
   _floatAfterDashTime: 0.08
   _dashPauseTime: 0.12
   _inputBufferWindow: 0.25
-  _waveDashSpeed: 15
+  _waveDashSpeed: 35
+  _waveDashAngle: 20
+  _waveDashWindow: 0.8
 --- !u!1 &2129653529
 GameObject:
   m_ObjectHideFlags: 0
