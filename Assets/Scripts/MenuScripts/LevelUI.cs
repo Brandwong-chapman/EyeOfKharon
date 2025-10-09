@@ -7,6 +7,8 @@ using Object = UnityEngine.Object;
 public class LevelUI : ChangePanel
 {
     public GameObject PausePanel;
+    public GameObject MainPauseMenuPanel;
+    public GameObject ConcrolsPanel;
 
     private void OnEnable()
     {
@@ -30,7 +32,19 @@ public class LevelUI : ChangePanel
             Hide(PausePanel);
             AudioListener.pause = false; // unmutes audio when AudioListener connected  
         }
+        
     }
-
+    
+    public void ShowControlScreen()
+    {
+        Hide(MainPauseMenuPanel);
+        Show(ConcrolsPanel);
+    }
+    
+    public void ShowMainPauseMenuScreen()
+        {
+            Show(MainPauseMenuPanel);
+            Hide(ConcrolsPanel);
+        }
         
 }
