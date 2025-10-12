@@ -206,7 +206,8 @@ namespace ControllerSystem.Platformer2D
         
         private void TryWaveDash()
         {
-            if (_waveDashAvailable && Controller.Input.jump.TryUseBuffer())
+            bool diagonalDash = Mathf.Abs(_dashDirection.x) > 0.1f && Mathf.Abs(_dashDirection.y) > 0.1f;
+            if (_waveDashAvailable && diagonalDash && Controller.Input.jump.TryUseBuffer())
             {
                 ApplyWaveDash();
                 _waveDashAvailable = false;
