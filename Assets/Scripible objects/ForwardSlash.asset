@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6044595100d4cbf46af431f32c9324a9, type: 3}
+  m_Name: ForwardSlash
+  m_EditorClassIdentifier: Assembly-CSharp::ControllerSystem.Platformer2D.BasicAttack.AttackConfigSO
+  AttackName: Farward Slash
+  Damage: 10
+  KnockbackForce: 8
+  KnockbackDirection: {x: -1, y: 0}
+  WindupTime: 0.1
+  ActiveTime: 0.15
+  CooldownTime: 0.3
+  Animation: {fileID: 0}
+  HitboxPrefab: {fileID: 8134966639853172101, guid: 741296b46c846374bb62f95d823827c9, type: 3}
+  AttackSound: {fileID: 0}
+  SpawnOffset: {x: -1.5, y: 0.35}
