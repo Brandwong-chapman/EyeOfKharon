@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7eaf9d1ce336d846a6b36995eb4db9f, type: 3}
+  m_Name: Jump Attack
+  m_EditorClassIdentifier: Assembly-CSharp::JumpAttack
+  minRange: 0.5
+  maxRange: 3
+  requiresPlayerAirborne: 0
+  requiresPlayerDashing: 0
+  weight: 1
+  useOffset: 0
+  offsetFromPlayer: {x: 0, y: 0}
+  useMultipleOffsets: 0
+  possibleOffsets: []
+  jumpOffset: {x: 0, y: 2}
+  damageAmount: 3
+  jumpForce: 7.5
+  horizontalLaunchForce: 4
+  windupTime: 0.2
+  attackDuration: 0.4
+  attackRange: 1.5
+  recoveryTime: 0.25
+  landingHitboxPrefab: {fileID: 8151024796094099687, guid: cec5cfa0802a04a49ba4915477a1efe6, type: 3}
+  landingHitInfo:
+    damage: 3
+    knockback: {x: 0, y: 1}
+    hitStop: 0.1
+    team: 0
+    hitbox: {fileID: 0}
+    hitPosition: {x: 0, y: 0}
