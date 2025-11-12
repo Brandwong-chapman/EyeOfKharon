@@ -15,8 +15,9 @@ MonoBehaviour:
   enemyName: test
   maxHP: 10
   moveSpeed: 4
-  movementType: 0
+  movementType: 1
   movementAI: {fileID: 11400000, guid: b935a798c30df664889c77698f22312c, type: 2}
   pathfindingStrategy: {fileID: 11400000, guid: 3dfe500c7c81e224297a9097e723b07b, type: 2}
-  damage: 0
-  attackCooldown: 0
+  attacks:
+  - {fileID: 11400000, guid: c268bef43f2d5064ab6b135d5d1d58a3, type: 2}
+  attackSelector: {fileID: 11400000, guid: f97172165352f2641b409fb659bcc087, type: 2}

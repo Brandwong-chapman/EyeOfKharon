@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdddf7daa9dae364bbc667987f51f9ae, type: 3}
-  m_Name: New Grounded Movement AI
-  m_EditorClassIdentifier: Assembly-CSharp::GroundedMovementAI
-  speed: 5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  groundCheckDistance: 3
+  m_Script: {fileID: 11500000, guid: 46593de8c52f0bd43a5fce5be8905585, type: 3}
+  m_Name: Flying New Attack Selector
+  m_EditorClassIdentifier: Assembly-CSharp::AttackSelector
+  distanceWeightInfluence: 1
+  airborneBonus: 2
+  dashBonus: 2

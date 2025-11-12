@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7eaf9d1ce336d846a6b36995eb4db9f, type: 3}
-  m_Name: Jump Attack
-  m_EditorClassIdentifier: Assembly-CSharp::JumpAttack
+  m_Script: {fileID: 11500000, guid: dfd84b5e10c10e748b5f301bf2ff3111, type: 3}
+  m_Name: Basic Projectile Attack
+  m_EditorClassIdentifier: Assembly-CSharp::BasicProjectileAttack
   minRange: 0.5
   maxRange: 3
   requiresPlayerAirborne: 0
@@ -21,19 +21,13 @@ MonoBehaviour:
   offsetFromPlayer: {x: 0, y: 0}
   useMultipleOffsets: 0
   possibleOffsets: []
-  jumpOffset: {x: 0, y: 2}
-  damageAmount: 3
-  jumpForce: 20
-  horizontalLaunchForce: 10
-  windupTime: 0.2
-  attackDuration: 0.4
-  attackRange: 5
-  recoveryTime: 0.25
-  landingHitboxPrefab: {fileID: 8151024796094099687, guid: cec5cfa0802a04a49ba4915477a1efe6, type: 3}
-  landingHitInfo:
+  projectilePrefab: {fileID: 6733715759197076970, guid: 3ab6487a7199778418a4947cb1ef1fe8, type: 3}
+  hitInfo:
     damage: 3
     knockback: {x: 0, y: 1}
     hitStop: 0.1
     team: 0
     hitbox: {fileID: 0}
     hitPosition: {x: 0, y: 0}
+  windupTime: 0.3
+  recoveryTime: 0.5
