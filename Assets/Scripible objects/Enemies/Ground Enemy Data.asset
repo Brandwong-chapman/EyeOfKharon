@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Ground Enemy Data
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Ground
-  maxHP: 5
-  moveSpeed: 2
+  maxHP: 20
+  moveSpeed: 100
+  knockbackResistance: -0.9
   movementType: 0
   movementAI: {fileID: 11400000, guid: b3fe7e9ce99576945aa48eb3feb06d6a, type: 2}
   pathfindingStrategy: {fileID: 11400000, guid: 29fdbfca3a3f9104986fb718c93e8320, type: 2}

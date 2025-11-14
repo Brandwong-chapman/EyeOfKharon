@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ControllerSystem.Platformer2D.BasicAttack.AttackConfigSO
   AttackName: Farward Slash
   Damage: 10
-  KnockbackForce: 8
+  KnockbackForce: 100
   KnockbackDirection: {x: -1, y: 0}
   WindupTime: 0.1
   ActiveTime: 0.15

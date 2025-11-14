@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FlyingEnemyData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: test
-  maxHP: 10
+  maxHP: 20
   moveSpeed: 4
+  knockbackResistance: 0.5
   movementType: 1
   movementAI: {fileID: 11400000, guid: b935a798c30df664889c77698f22312c, type: 2}
   pathfindingStrategy: {fileID: 11400000, guid: 3dfe500c7c81e224297a9097e723b07b, type: 2}
