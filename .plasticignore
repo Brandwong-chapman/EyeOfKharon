@@ -1,0 +1,87 @@
+# =============================
+# Unity – Version Control .gitignore
+# =============================
+
+# --- Unity Generated Folders ---
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+MemoryCaptures/
+Recordings/
+
+# --- Unity Cache / Log Files ---
+*.log
+*.pidb
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+mono_crash.*
+sysinfo.txt
+
+# Blender autosave (not needed for VCS)
+*.blend1
+*.blend1.meta
+
+# --- IDE / Editor Generated Files ---
+
+# JetBrains Rider
+Assets/Plugins/Editor/JetBrains*
+*.DotSettings.user
+
+# Visual Studio
+.vs/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# Gradle
+.gradle/
+
+# MonoDevelop / Consulo
+ExportedObj/
+.consulo/
+
+# --- Unity Crash + Diagnostic Files ---
+sysinfo.txt
+mono_crash.*
+
+# --- Build Outputs ---
+*.apk
+*.aab
+*.unitypackage
+*.unitypackage.meta
+*.app
+
+# Crashlytics
+crashlytics-build.properties
+
+# --- Test Runner ---
+InitTestScene*.unity*
+
+# --- Addressables ---
+ServerData/
+Assets/StreamingAssets/aa*
+Assets/AddressableAssetsData/link.xml*
+Assets/Addressables_Temp*
+Assets/AddressableAssetsData/*/*.bin*
+
+# --- Visual Scripting ---
+Assets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db
+Assets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
+Assets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers
+Assets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
+
+# --- Auto-generated test scenes ---
+Assets/InitTestScene*.unity*

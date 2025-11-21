@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1527366526928673494}
   - component: {fileID: 4255498535130662191}
   - component: {fileID: 559496021097538030}
-  - component: {fileID: 8757418801241123299}
   - component: {fileID: 2828561877441760029}
   m_Layer: 3
   m_Name: Enemy_Flying
@@ -131,6 +130,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   isFlying: 1
+  currentVelocity: {x: 0, y: 0}
 --- !u!114 &1527366526928673494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,9 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e8fd72b12e1dd439657c1f4e4af822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VisionSensor
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1
   viewRange: 5
   player: {fileID: 0}
 --- !u!114 &4255498535130662191
@@ -160,13 +157,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7f231716102454aa159ca8f821b83e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  updateInterval: 0.25
-  health: 10
   data: {fileID: 11400000, guid: 3faa6aad8a35a914d881fd2df84e72ba, type: 2}
-  player: {fileID: 0}
-  seeker: {fileID: 559496021097538030}
-  nextWaypointDistance: 0.1
-  pathRecalcInterval: 0.05
+  fighterController: {fileID: 0}
+  updateInterval: 0.25
+  movementAI: {fileID: 0}
+  pathfinding: {fileID: 0}
+  currentHP: 0
+  moveTarget: {x: 0, y: 0}
 --- !u!114 &559496021097538030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,23 +192,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &8757418801241123299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4527001547283896457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e8fd72b12e1dd439657c1f4e4af822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VisionSensor
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1
-  viewRange: 5
-  player: {fileID: 0}
 --- !u!212 &2828561877441760029
 SpriteRenderer:
   m_ObjectHideFlags: 0

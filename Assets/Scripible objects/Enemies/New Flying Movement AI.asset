@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: New Flying Movement AI
   m_EditorClassIdentifier: Assembly-CSharp::FlyingMovementAI
   speed: 5
+  smoothing: 8
+  pathfinding: {fileID: 11400000, guid: 3dfe500c7c81e224297a9097e723b07b, type: 2}

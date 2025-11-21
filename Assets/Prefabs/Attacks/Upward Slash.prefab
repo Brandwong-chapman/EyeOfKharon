@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1132213910957757589}
   - component: {fileID: 6370177539738998126}
   - component: {fileID: 8695968673618111187}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Upward Slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,3 +180,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ControllerSystem.Platformer2D.BasicAttack.AttackHitbox
   Config: {fileID: 11400000, guid: 860763f3c55d2684d97cd47a20eab071, type: 2}
   Owner: {fileID: 0}
+  OwnerTag: 

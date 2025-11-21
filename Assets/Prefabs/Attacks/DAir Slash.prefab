@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5244135049744031411}
   - component: {fileID: 8805797136237881920}
   - component: {fileID: 7092419860531053105}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DAir Slash
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -180,3 +180,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ControllerSystem.Platformer2D.BasicAttack.AttackHitbox
   Config: {fileID: 11400000, guid: 56107e8e790d1b34983abf35cfa2cab7, type: 2}
   Owner: {fileID: 0}
+  OwnerTag: 
