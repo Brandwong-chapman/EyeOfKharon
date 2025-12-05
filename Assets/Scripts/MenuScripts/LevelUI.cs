@@ -12,17 +12,17 @@ public class LevelUI : ChangePanel
 
     private void OnEnable()
     {
-        GameEvents.OnPauseChanged += HandlePauseChanged;
+        GameEvents.OnGameStateChanged += HandleGameStateChanged;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnPauseChanged -= HandlePauseChanged;
+        GameEvents.OnGameStateChanged -= HandleGameStateChanged;
     }
 
-    private void HandlePauseChanged(bool isPaused)
+    private void HandleGameStateChanged(PauseManager.GameState CurrentGameState)
     {
-        if (isPaused)
+        if (CurrentGameState == PauseManager.GameState.Paused)
         {
             Show(PausePanel);
             AudioListener.pause = true; // mutes audio when AudioListener connected  

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace ControllerSystem.Platformer2D
@@ -63,6 +64,7 @@ namespace ControllerSystem.Platformer2D
 
         private bool _jumpEndedEarly;
         private float _lastJumpInitiated;
+        private bool isJumpLocked;
         private bool CoyoteTimeIsValid =>
             motor.LastGroundedTime + _coyoteTimeSettings.CoyoteTimeThreshold > Time.time &&
             Vector2.SqrMagnitude((Vector2)transform.position - motor.LastGroundedPosition) < (_coyoteTimeSettings.CoyoteTimeMaxDistance * _coyoteTimeSettings.CoyoteTimeMaxDistance);
@@ -74,8 +76,34 @@ namespace ControllerSystem.Platformer2D
 
         protected virtual bool CanJump()
         {
-            return (motor.Grounded || CoyoteTimeIsValid) && _lastJumpInitiated + _coyoteTimeSettings.CoyoteTimeThreshold < Time.time; //don't let them jump twice in a row
+            return !isJumpLocked && (motor.Grounded || CoyoteTimeIsValid) && _lastJumpInitiated + _coyoteTimeSettings.CoyoteTimeThreshold < Time.time; //don't let them jump twice in a row
         }
+
+        protected virtual void LockJump(bool isLocked)
+        {
+            isJumpLocked = isLocked;
+        }
+        
+        private IEnumerator LockJumpCorunitne(float duration)
+        {
+            LockJump(true);
+            yield return new WaitForSeconds(duration);
+            LockJump(false);
+        }
+
+        private Coroutine lockJumpCorunitne;
+        public void LockJumpForDuration(float duration)
+        {
+            if (lockJumpCorunitne != null)
+            {
+                StopCoroutine(lockJumpCorunitne);
+            }
+
+            lockJumpCorunitne = StartCoroutine(LockJumpCorunitne(duration));
+        }
+        
+        
+        
         protected virtual bool CanDoubleJump()
         {
             return !motor.Grounded && RemainingDoubleJumps > 0;
@@ -119,7 +147,7 @@ namespace ControllerSystem.Platformer2D
         protected virtual void HandleJumpEndEarly()
         {
             // Send the player back down when they release jump
-            if (!motor.Grounded && WithinJumpEndEarlyWindow && !Controller.Input.jump.GetHeld() && !_jumpEndedEarly)
+            if (!motor.Grounded && WithinJumpEndEarlyWindow && (!Controller.Input.jump.GetHeld() || isJumpLocked) && !_jumpEndedEarly)
             {
                 _jumpEndedEarly = true;
 

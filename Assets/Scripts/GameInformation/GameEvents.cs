@@ -3,10 +3,10 @@ using UnityEngine;
 
 public static class GameEvents
 {
-    public static event Action<bool> OnPauseChanged;
-
-    public static void PauseChanged(bool isPaused)
+    public static event Action<PauseManager.GameState> OnGameStateChanged;
+    
+    public static void HandleGameStateChanged(PauseManager.GameState currentGameState)
     {
-        OnPauseChanged?.Invoke(isPaused);
+        OnGameStateChanged?.Invoke(currentGameState);
     }
 }

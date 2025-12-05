@@ -5,9 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PauseManager : ChangePanel
 {
-    private bool isPaused = false;
     
-
+    public enum GameState { Paused, HalfTime, Normal }
+    
+    private GameState CurrentGameState;
+    private GameState OldGameState;
+    
     private void Update()
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -15,16 +18,34 @@ public class PauseManager : ChangePanel
             TogglePause();
         }
     }
+    
+    public void ChangeGameState(GameState newGameState)
+    {
+        if (CurrentGameState == newGameState)
+            return;
+        OldGameState = CurrentGameState;
+        CurrentGameState = newGameState;
+        switch (newGameState)
+        {
+            case GameState.Paused:
+                GameTimeScale.Pause();
+                break;
+            case GameState.Normal:
+                GameTimeScale.Resume();
+                break;
+            default:
+                GameTimeScale.SlowTime(0.5f);
+                break;
+        }
+    }
 
     public void TogglePause()
     {
-            isPaused = !isPaused;
-            
-            if (isPaused)
-                GameTimeScale.Pause();
+            if (CurrentGameState != GameState.Paused)
+                ChangeGameState(GameState.Paused);
             else
-                GameTimeScale.Resume();
-            GameEvents.PauseChanged(isPaused);
-        }
+                ChangeGameState(OldGameState);
+            GameEvents.HandleGameStateChanged(CurrentGameState);
+    }
         
 }

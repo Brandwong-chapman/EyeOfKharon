@@ -56,7 +56,6 @@ public class FighterController : EntityController
         Dash,
         Attack,
         OnWall,
-        
         Dead,
     }
 

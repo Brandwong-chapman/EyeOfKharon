@@ -13,6 +13,7 @@ namespace ControllerSystem.Platformer2D.BasicAttack{
         [SerializeField] private Transform _attackOrigin;
         private bool _isAttacking;
         private Coroutine _attackRoutine;
+        public event Action<String> basicAttack;
 
         public static Action<IDamageable> OnAttackHit;
 
@@ -70,8 +71,10 @@ namespace ControllerSystem.Platformer2D.BasicAttack{
 
 // Assign the hitbox references
             var hb = hitbox.GetComponent<AttackHitbox>();
+            
             hb.Config = config;
             hb.Owner = this;
+            hb.OwnerTag = gameObject.tag; 
 
             
             yield return new WaitForSeconds(config.ActiveTime);

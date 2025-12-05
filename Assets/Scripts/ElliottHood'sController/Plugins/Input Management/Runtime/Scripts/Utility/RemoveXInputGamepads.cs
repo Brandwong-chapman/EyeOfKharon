@@ -30,6 +30,8 @@ public class RemoveXInputGamepads : MonoBehaviour
     private void PlayerInput_onControlsChanged(PlayerInput obj)
     {
         Gamepad gamepad = obj.GetDevice<Gamepad>();
+#if UNITY_SWITCH
+
         if (gamepad is UnityEngine.InputSystem.Switch.SwitchProControllerHID)
         {
             foreach (var item in Gamepad.all)
@@ -41,5 +43,7 @@ public class RemoveXInputGamepads : MonoBehaviour
                 }
             }
         }
+#endif
+
     }
 }

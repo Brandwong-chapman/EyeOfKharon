@@ -202,7 +202,6 @@ namespace InputManagement
         
         public void Dash(InputAction.CallbackContext context)
         {
-            Debug.Log($"[InputManager] Dash callback called. context.performed: {context.performed}");
             if (context.performed)
             {
                 input.dash.OnPress();

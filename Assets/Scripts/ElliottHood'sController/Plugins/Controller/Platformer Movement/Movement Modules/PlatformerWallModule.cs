@@ -22,7 +22,6 @@ public class PlatformerWallModule : PlatformerMotorModule
     /// </summary>
     public int GetLockedOutDirection()
     {
-        
         return Time.time < _lockoutEndTime ? _lockoutDir : 0;
     }
     
